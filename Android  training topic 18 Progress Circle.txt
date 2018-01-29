@@ -1,0 +1,197 @@
+=======================Progress Circle=====================
+
+The easiest way to make a progress circle is using through a class called ProgressDialog. The loading bar can also be made through that class. The only logical difference between bar and circle is 
+
+
+
+
+====================
+ProgressDialog progress = new ProgressDialog(this);
+
+
+==========================
+
+progress.setMessage("Downloading Music :) ");
+progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+progress.setIndeterminate(true);
+
+========================
+
+1	getMax()
+
+		This methods returns the maximum value of the progress
+
+2	incrementProgressBy(int diff)
+
+		This method increment the progress bar by the difference of value passed as a parameter
+
+3	setIndeterminate(boolean indeterminate)
+
+		This method set the progress indicator as determinate or indeterminate
+
+4	setMax(int max)
+
+		This method set the maximum value of the progress dialog
+
+5	setProgress(int value)
+
+		This method is used to update the progress dialog with some specific value
+
+6	show(Context context, CharSequence title, CharSequence message)
+
+		This is a static method, used to display progress dialog
+
+
+======================
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/image_lite"
+    tools:context="com.zaaviyah.zaaviyah_progresscircle.MainActivity">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="73dp"
+        android:text="Zaaviyah solutions"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@android:color/background_light"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:layout_marginBottom="43dp"
+        android:background="@android:color/holo_green_dark"
+        android:text="Download"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@android:color/background_light"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:layout_above="@+id/imageView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="58dp" />
+
+
+</RelativeLayout>
+==================
+
+package com.zaaviyah.zaaviyah_progresscircle;
+
+import android.app.ProgressDialog;
+import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+
+public class MainActivity extends AppCompatActivity {
+
+
+    Button b1;
+    private ProgressDialog progressBar;
+    private int progressBarStatus = 0;
+    private Handler progressBarbHandler = new Handler();
+    private long fileSize = 0;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        b1=(Button)findViewById(R.id.button);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressBar = new ProgressDialog(view.getContext());
+                progressBar.setCancelable(true);
+                progressBar.setMessage("File downloading ...");
+                progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                progressBar.setProgress(0);
+                progressBar.setMax(100);
+                progressBar.show();
+                progressBarStatus = 0;
+
+                fileSize = 0;
+                new Thread(new Runnable() {
+                    public void run() {
+                        while (progressBarStatus < 100) {
+                            progressBarStatus = downloadFile();
+
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                            progressBarbHandler.post(new Runnable() {
+                                public void run() {
+                                    progressBar.setProgress(progressBarStatus);
+                                }
+                            });
+                        }
+
+                        if (progressBarStatus >= 100) {
+                            try {
+                                Thread.sleep(2000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            progressBar.dismiss();
+                        }
+                    }
+                }).start();
+
+
+            }
+        });
+    }
+
+    public int downloadFile() {
+        while (fileSize <= 1000000) {
+            fileSize++;
+
+            if (fileSize == 100000) {
+                return 10;
+            }else if (fileSize == 200000) {
+                return 20;
+            }else if (fileSize == 300000) {
+                return 30;
+            }else if (fileSize == 400000) {
+                return 40;
+            }else if (fileSize == 500000) {
+                return 50;
+            }else if (fileSize == 700000) {
+                return 70;
+            }else if (fileSize == 800000) {
+                return 80;
+            }
+        }
+        return 100;
+    }
+}
+
+
+=======================
+
+C:\Users\pakistan laptop\AppData\Local\Android\Sdk
