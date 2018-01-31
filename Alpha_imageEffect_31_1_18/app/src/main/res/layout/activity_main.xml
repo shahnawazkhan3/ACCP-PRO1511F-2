@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.zaaviyah.alpha_imageeffect_31_1_18.MainActivity">
+
+
+    <ImageView
+        android:id="@+id/imgView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="17dp"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/btGreen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp"
+        android:onClick="green"
+        android:text="Green"
+        android:textSize="22dp" />
+
+    <Button
+        android:id="@+id/btBlue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btGreen"
+        android:layout_centerHorizontal="true"
+        android:text="Blue"
+        android:textSize="22dp" />
+
+    <Button
+        android:id="@+id/btYellow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btBlue"
+        android:layout_centerHorizontal="true"
+        android:onClick="yellow"
+        android:text="Yellow" />
+
+    <Button
+        android:id="@+id/btBlack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btYellow"
+        android:layout_centerHorizontal="true"
+        android:onClick="black"
+        android:text="black"
+        android:textSize="22dp" />
+
+    <Button
+        android:id="@+id/btGray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btBlack"
+        android:layout_centerHorizontal="true"
+        android:onClick="gray"
+        android:text="gray" />
+</RelativeLayout>
