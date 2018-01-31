@@ -1,0 +1,142 @@
+=============Location Based Services========
+Google Play services, which facilitates adding location awareness to your app with automated location tracking,
+ geofencing, and activity recognition.
+
+==================The Location Object=================
+
+
+1)	float distanceTo(Location dest)
+
+	Returns the approximate distance in meters between this location and the given location.
+
+2)	float getAccuracy()
+
+	Get the estimated accuracy of this location, in meters.
+
+3)	double getAltitude()
+
+Get the altitude if available, in meters above sea level.
+
+4)	float getBearing()
+
+Get the bearing, in degrees.
+
+5)	double getLatitude()
+
+Get the latitude, in degrees.
+
+6)	double getLongitude()
+
+Get the longitude, in degrees.
+
+7)	float getSpeed()
+
+Get the speed if it is available, in meters/second over ground.
+
+8)	boolean hasAccuracy()
+
+	True if this location has an accuracy.
+
+9)	boolean hasAltitude()
+
+True if this location has an altitude.
+
+10)	boolean hasBearing()
+
+True if this location has a bearing.
+
+11)	boolean hasSpeed()
+
+True if this location has a speed.
+
+12)	void reset()
+
+Clears the contents of the location.
+
+13)	void setAccuracy(float accuracy)
+
+Set the estimated accuracy of this location, meters.
+
+14)	void setAltitude(double altitude)
+
+Set the altitude, in meters above sea level.
+
+15)	void setBearing(float bearing)
+
+Set the bearing, in degrees.
+
+16)	void setLatitude(double latitude)
+
+Set the latitude, in degrees.
+
+17)	void setLongitude(double longitude)
+
+Set the longitude, in degrees.
+
+18)	void setSpeed(float speed)
+
+Set the speed, in meters/second over ground.
+
+19)	String toString()
+
+Returns a string containing a concise, human-readable description of this object.
+
+====================Get the Current Location============
+
+1	abstract void onConnected(Bundle connectionHint)
+
+This callback method is called when location service is
+ connected to the location client successfully. You will use connect() method to connect to the location client.
+
+2	abstract void onDisconnected()
+
+	This callback method is called when the client is disconnected.
+ You will use disconnect() method to disconnect from the location client.
+
+3	abstract void onConnectionFailed(ConnectionResult result)
+
+This callback method is called when there was an error connecting 
+the client to the service.
+
+
+=================Get the Updated Location==================
+
+ implement LocationListener
+
+1	abstract void onLocationChanged(Location location)
+
+This callback method is used for receiving notifications from the LocationClient 
+when the location has changed.
+
+==================Location Quality of Service================
+1	setExpirationDuration(long millis)
+
+	Set the duration of this request, in milliseconds.
+
+2	setExpirationTime(long millis)
+
+	Set the request expiration time, in millisecond since boot.
+
+3	setFastestInterval(long millis)
+
+	Explicitly set the fastest interval for location updates, in milliseconds.
+
+4	setInterval(long millis)
+
+Set the desired interval for active location updates, in milliseconds.
+
+5	setNumUpdates(int numUpdates)
+
+Set the number of location updates.
+
+6	setPriority(int priority)
+
+Set the priority of the request.
+
+
+==================
+location request with setPriority(int) set
+ to PRIORITY_HIGH_ACCURACY and setInterval(long)
+
+======================Displaying a Location Address=============
+
