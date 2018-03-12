@@ -1,0 +1,224 @@
+Shared Preferences
+
+==================
+
+ One of this way is called Shared Preferences. 
+Shared Preferences allow you to save and retrieve data in the form of key,value pair.
+
+==================
+
+SharedPreferences sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+====================
+
+
+1	MODE_APPEND
+
+		This will append the new preferences with the already existing preferences
+
+2	MODE_ENABLE_WRITE_AHEAD_LOGGING
+
+		Database open flag. When it is set , it would enable write ahead logging by default
+
+3	MODE_MULTI_PROCESS
+
+		This method will check for modification of preferences even if the sharedpreference instance has already been loaded
+
+4	MODE_PRIVATE
+
+		By setting this mode, the file can only be accessed using calling application
+
+5	MODE_WORLD_READABLE
+
+		This mode allow other application to read the preferences
+
+6	MODE_WORLD_WRITEABLE
+
+		This mode allow other application to write the preferences
+
+
+
+
+================
+
+1	apply()
+
+It is an abstract method. It will commit your changes back from editor to the sharedPreference object you are calling
+
+2	clear()
+
+It will remove all values from the editor
+
+3	remove(String key)
+
+It will remove the value whose key has been passed as a parameter
+
+4	putLong(String key, long value)
+
+It will save a long value in a preference editor
+
+5	putInt(String key, int value)
+
+It will save a integer value in a preference editor
+
+6	putFloat(String key, float value)
+
+It will save a float value in a preference editor
+
+==============
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.zaaviyah.apha_sharedprefance_23_2_18.MainActivity">
+
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="name"
+        android:inputType="textPersonName"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:hint="email"
+        android:inputType="textEmailAddress"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/etPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etEmail"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:hint="phone"
+        android:inputType="textPersonName"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/btSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Save"
+        android:textSize="22dp" />
+</RelativeLayout>
+
+
+<resources>
+   <string name="app_name">My Application</string>
+</resources>
+
+================AndroidManifest.xml.================
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+   package="com.example.sairamkrishna.myapplication" >
+   
+   <application
+      android:allowBackup="true"
+      android:icon="@mipmap/ic_launcher"
+      android:label="@string/app_name"
+      android:theme="@style/AppTheme" >
+      
+      <activity
+         android:name=".MainActivity"
+         android:label="@string/app_name" >
+         
+         <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+         </intent-filter>
+         
+      </activity>
+      
+   </application>
+</manifest>
+
+=================MAIN.JAVA==============
+package com.zaaviyah.apha_sharedprefance_23_2_18;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText etNAME, etEmail, etPhone;
+    Button b1Save;
+
+    public  static final  String MYPREFERENCE= "myPerfer";
+    public static  final  String Name= "nameKey";
+    public static final  String Email ="emailKey";
+    public static final String Phone ="phoneKey";
+
+    SharedPreferences sharedPreferences;
+
+
+    @Override
+    protected void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // ID HERE
+
+        etNAME=(EditText)findViewById(R.id.etName);
+        etEmail=(EditText)findViewById(R.id.etEmail);
+        etPhone=(EditText)findViewById(R.id.etPhone);
+        b1Save=(Button)findViewById(R.id.btSave);
+
+        sharedPreferences= getSharedPreferences(MYPREFERENCE, Context.MODE_PRIVATE);
+
+
+        b1Save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String nameS =etNAME.getText().toString();
+                String emailS= etEmail.getText().toString();
+                String phoneS=etPhone.getText().toString();
+
+                SharedPreferences.Editor editor= sharedPreferences.edit();
+
+                 editor.putString(Name,nameS);
+                 editor.putString(Email,emailS);
+                 editor.putString(Phone,phoneS);
+                 editor.commit();
+
+                Toast.makeText(MainActivity.this,"yes",Toast.LENGTH_SHORT).show();
+
+
+
+            }
+        });
+
+
+    }
+}
+
+

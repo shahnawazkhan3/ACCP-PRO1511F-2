@@ -1,0 +1,750 @@
+firebase APP database 
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    // ADD LIBRAY
+
+    // Add this Libray
+
+    compile 'com.github.d-max:spots-dialog:0.7@aar'
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'uk.co.chrisjenx:calligraphy:2.3.0'
+    compile 'com.rengwuxian.materialedittext:library:2.1.4'
+    compile 'com.android.support:design:26.+'
+    compile 'com.android.support:cardview-v7:26.+'
+    compile 'com.google.firebase:firebase-core:10.2.0'
+    compile 'com.google.firebase:firebase-database:10.2.0'
+    compile 'com.google.firebase:firebase-auth:10.2.0'
+    testCompile 'junit:junit:4.12'
+}
+
+apply plugin: 'com.google.gms.google-services'
+
+================grudele=======
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.2'
+        classpath 'com.google.gms:google-services:3.2.0'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        // ...
+        maven {
+            url "https://maven.google.com" // Google's Maven repository
+        }
+
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+
+============================mainactivit.xml==============
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app"
+    tools:context="com.zaaviyah.zaaviyah_texi123.MainActivity">
+   <!--<LinearLayout-->
+       <!--android:layout_width="wrap_content"-->
+       <!--android:orientation="vertical"-->
+       <!--android:layout_marginTop="30dp"-->
+       <!--android:layout_centerHorizontal="true"-->
+       <!--android:gravity="center_horizontal"-->
+       <!--android:layout_height="wrap_content"-->
+       <!--android:id="@+id/linearLayout">-->
+
+       <!--<TextView-->
+           <!--android:layout_width="wrap_content"-->
+
+           <!--android:layout_height="wrap_content"-->
+           <!--android:fontFamily="monospace"-->
+           <!--android:text="Taxi123"-->
+           <!--android:textAllCaps="true"-->
+           <!--android:textColor="@android:color/background_light"-->
+           <!--android:textSize="36dp"-->
+           <!--android:textStyle="bold" />-->
+
+       <!--<TextView-->
+           <!--android:id="@+id/textView"-->
+           <!--android:layout_width="wrap_content"-->
+           <!--android:layout_height="wrap_content"-->
+           <!--android:layout_below="@+id/linearLayout"-->
+           <!--android:layout_centerHorizontal="true"-->
+           <!--android:layout_marginTop="44dp"-->
+           <!--android:text="WELLCOME"-->
+           <!--android:textColor="@android:color/background_light"-->
+           <!--android:textSize="24dp"-->
+           <!--android:textStyle="bold" />-->
+
+   <!--</LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+
+
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin">
+
+
+        <!--<ImageView-->
+            <!--android:layout_width="@dimen/logo_w_h"-->
+            <!--android:layout_height="@dimen/logo_w_h"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_marginBottom="30dp"-->
+            <!--android:src="@mipmap/ic_launcher" />-->
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/etMainEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/etMainPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="true"
+                android:hint="@string/hint_password"
+                android:imeActionId="@+id/login"
+                android:imeOptions="actionUnspecified"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/btMainLoging"
+            style="?android:textAppearanceSmall"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+            android:text="@string/action_sign_in_short"
+            android:textColor="?android:attr/textColorPrimaryInverseDisableOnly"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btMainForgetPassword"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:background="@null"
+            android:text="@string/btn_forgot_password"
+            android:textAllCaps="false"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="18dp" />
+
+        <!-- Link to Login Screen -->
+
+        <Button
+            android:id="@+id/btMainRegister"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:background="@null"
+            android:text="@string/btn_link_to_login"
+            android:textAllCaps="false"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+
+
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/BTs"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginBottom="69dp"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:weightSum="2">-->
+
+        <!--<Button-->
+            <!--android:id="@+id/btSignIN"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+
+            <!--android:backgroundTint="?attr/actionModeSplitBackground"-->
+            <!--android:text="Sign In"-->
+            <!--android:textAlignment="center"-->
+            <!--android:textColor="@color/common_google_signin_btn_text_dark_default"-->
+            <!--android:textSize="18dp" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/btRegister"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+
+            <!--android:backgroundTint="?attr/actionModeSplitBackground"-->
+            <!--android:text="REGISTER"-->
+            <!--android:textAlignment="center"-->
+            <!--android:textColor="@color/common_google_signin_btn_text_dark_default"-->
+            <!--android:textSize="18dp" />-->
+
+    <!--</LinearLayout>-->
+
+
+
+</RelativeLayout>
+
+===================registerdervier.xml================
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/register"
+    tools:context="com.zaaviyah.zaaviyah_texi123.RegisterDriverActivity">
+
+
+    <EditText
+        android:id="@+id/etRegEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textAlignment="center"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/etRegPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:layout_below="@+id/etRegEmail"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/etRegName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etRegPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/etRegPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etRegName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:hint="Phone"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btRegRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etRegPhone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="65dp"
+        android:text="Register"
+        android:textAlignment="center"
+        android:textSize="22dp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btRegRegister"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:layout_marginTop="44dp" />
+</RelativeLayout>
+
+
+=========registerDeriver.java==============
+
+package com.zaaviyah.zaaviyah_texi123;
+
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import dmax.dialog.SpotsDialog;
+
+public class RegisterDriverActivity extends AppCompatActivity {
+
+    FirebaseAuth auth;
+    FirebaseDatabase db;
+    DatabaseReference users;
+
+    Button b1Register;
+    EditText etName,etPassWord, etPhone,etEmail;
+    ProgressBar progressBar;
+
+
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_register_driver);
+
+        // initilaization fire base
+
+       auth =FirebaseAuth.getInstance();
+        db=FirebaseDatabase.getInstance();
+        users=db.getReference("Users");
+
+      /// ID GET SHOW
+        b1Register=(Button)findViewById(R.id.btRegRegister);
+
+        etEmail=(EditText)findViewById(R.id.etRegEmail);
+        etPassWord=(EditText)findViewById(R.id.etRegPassword);
+
+        etName=(EditText)findViewById(R.id.etRegName);
+        etPhone=(EditText)findViewById(R.id.etRegPhone);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar2);
+
+
+
+
+
+        b1Register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+             //  Toast.makeText(RegisterDriverActivity.this, "yes", Toast.LENGTH_SHORT).show();
+                final   String email = etEmail.getText().toString();
+                final    String password = etPassWord.getText().toString();
+                final    String name = etName.getText().toString();
+                final     String phone = etPhone.getText().toString();
+
+                if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(getApplicationContext(), "Enter Password address!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (password.length() < 6) {
+                    Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(name)) {
+                    Toast.makeText(getApplicationContext(), "Enter Name address!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(phone)) {
+                    Toast.makeText(getApplicationContext(), "Enter Phone address!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (phone.length() < 11) {
+                    Toast.makeText(getApplicationContext(), "Phone number not valid !", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                //progressBar.setVisibility(View.VISIBLE);
+
+                // here auth show know as tahy
+
+                    /// AUTHICATION
+
+
+                //Toast.makeText(getApplicationContext(),email.toString(), Toast.LENGTH_SHORT).show();
+
+                auth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(RegisterDriverActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                                //show  waithing dialog
+                                SpotsDialog waitingDilog = new SpotsDialog(RegisterDriverActivity.this);
+                                waitingDilog.show();
+                                Toast.makeText(RegisterDriverActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                               // progressBar.setVisibility(View.GONE);
+
+                                // progressBar.setVisibility(View.GONE);
+                                // If sign in fails, display a message to the user. If sign in succeeds
+                                // the auth state listener will be notified and logic to handle the
+                                // signed in user can be handled in the listener.
+
+                                //SAVE USER DB
+                               User user= new User();
+                               user.setEmail(email);
+                               user.setName(name);
+                               user.setPassword(password);
+                               user.setPhone(phone);
+
+                               // use to enmail key
+                               users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                       .setValue(user)
+                                       .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                           @Override
+                                           public void onSuccess(Void aVoid) {
+
+                                             Toast.makeText(RegisterDriverActivity.this,"Register key email",Toast.LENGTH_SHORT).show();
+                                               startActivity(new Intent(RegisterDriverActivity.this, HomeActivity.class));
+//
+                                           }
+                                       })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(RegisterDriverActivity.this,"Register FAIL"+e.getMessage(),Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+//                                if (!task.isSuccessful()) {
+//                                    Toast.makeText(RegisterDriverActivity.this, "Authentication failed." + task.getException(), Toast.LENGTH_SHORT).show();
+//                                } else {
+//                                    startActivity(new Intent(RegisterDriverActivity.this, MainActivity.class));
+//                                    //finish();
+//                                    Toast.makeText(RegisterDriverActivity.this,"YES DONE ", Toast.LENGTH_SHORT).show();
+//                                }
+                            }
+                        });
+
+
+            }
+        });
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        progressBar.setVisibility(View.GONE);
+    }
+
+}
+
+========================User.java=================
+
+package com.zaaviyah.zaaviyah_texi123;
+
+/**
+ * Created by pakistan laptop on 3/1/2018.
+ */
+
+public class User {
+
+    public   String name , email, password,phone;
+
+    public User(){
+
+    }
+
+    public User(String name, String email, String password,String phone){
+
+        this.name=name;
+        this.email=email;
+        this.password=password;
+        this.phone =phone;
+
+
+    }
+
+    /// get and set method
+    public void setName (String name){
+        this.name=name;
+    }
+    String getName (){
+        return  name;
+
+    }
+    public void setEmail (String  email){
+        this.email=email;
+    }
+    String getEmail (){
+        return  email;
+
+    }
+    public void setPassword (String  password){
+        this.password=password;
+    }
+    String getPassword (){
+        return  password;
+
+    }
+    public void setPhone (String  phone){
+        this.phone=phone;
+    }
+    String getPhone (){
+        return  phone;
+
+    }
+
+}
+
+=========================mainActivity.xml========
+package com.zaaviyah.zaaviyah_texi123;
+
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import dmax.dialog.SpotsDialog;
+
+public class MainActivity extends AppCompatActivity {
+
+//    Button  b1register, b2login;
+//
+//
+    FirebaseAuth auth;
+    FirebaseDatabase db;
+    DatabaseReference users;
+
+    EditText etEmail,etPassword;
+    Button b2Loging ,b1register,b3Forgetpassword;
+
+//    FirebaseAuth auth;
+//    FirebaseDatabase db;
+//    DatabaseReference users;
+//
+//    ProgressBar progressBar;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+
+        //Get Firebase auth instance
+        auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            startActivity(new Intent(MainActivity.this, HomeActivity.class));
+            finish();
+        }
+
+        setContentView(R.layout.activity_main);
+
+        // initilaization fire base
+
+        auth =FirebaseAuth.getInstance();
+//        db=FirebaseDatabase.getInstance();
+//        users=db.getReference("Users");
+
+        etEmail=(EditText)findViewById(R.id.etMainEmail);
+        etPassword=(EditText)findViewById(R.id.etMainPassword);
+
+        b1register=(Button)findViewById(R.id.btMainRegister);
+        b2Loging=(Button)findViewById(R.id.btMainLoging);
+        b3Forgetpassword=(Button)findViewById(R.id.btMainForgetPassword) ;
+       // progressBar = (ProgressBar) findViewById(progressBar);
+
+        b1register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent registerintent = new Intent(MainActivity.this,RegisterDriverActivity.class);
+                startActivity(registerintent);
+
+              // Toast.makeText(MainActivity.this,"regids",Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+        b2Loging.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+             //Toast.makeText(MainActivity.this,"yes",Toast.LENGTH_LONG).show();
+
+                String email = etEmail.getText().toString();
+                final String password = etPassword.getText().toString();
+
+                if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (password.length() < 6) {
+                    Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // progressBar.setVisibility(View.VISIBLE);
+
+                /// show waiting dailog
+//                SpotsDialog waitingDilog = new SpotsDialog(MainActivity.this);
+//                waitingDilog.show();
+
+                //authenticate user
+                auth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                // If sign in fails, display a message to the user. If sign in succeeds
+                                // the auth state listener will be notified and logic to handle the
+                                // signed in user can be handled in the listener.
+                                SpotsDialog waitingDilog = new SpotsDialog(MainActivity.this);
+                                waitingDilog.show();
+
+
+                                //progressBar.setVisibility(View.GONE);
+                                if (!task.isSuccessful()) {
+                                    // there was an error
+                                    if (password.length() < 6) {
+
+                                        //inputPassword.setError(getString(R.string.minimum_password));
+                                        Toast.makeText(MainActivity.this,"Minimum password", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(MainActivity.this,"Authication Fail", Toast.LENGTH_LONG).show();
+
+                                    }
+                                } else {
+                                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                    waitingDilog.dismiss();
+                                }
+                            }
+                        });
+
+            }
+        });
+
+    }
+
+
+}
+============maniface.java============
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zaaviyah.zaaviyah_texi123">
+
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality. 
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".RegisterDriverActivity" />
+        <activity android:name=".HomeActivity" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+    </application>
+
+</manifest>
