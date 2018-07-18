@@ -1,0 +1,300 @@
+SQL:
+
+SQL is a database computer language designed for the retrieval and management of data in a relational database. SQL stands for Structured Query Language. This tutorial will give you a quick start to SQL.
+
+SQL is a language to operate databases; it includes database creation, deletion, fetching rows, modifying rows, etc.
+ 	 
+==============What is SQL?:==================
+
+SQL is Structured Query Language, which is a computer language for storing, manipulating and retrieving data stored in a relational database.
+
+SQL is the standard language for Relational Database System. All the Relational Database Management Systems (RDMS) like MySQL, MS Access, Oracle, Sybase, Informix, Postgres and SQL Server use SQL as their standard database language.
+
+========================SQL Commands================
+The standard SQL commands to interact with relational databases are CREATE, SELECT, INSERT, UPDATE, DELETE and DROP. 
+
+===================DDL Data Definition Language==========
+
+
+1) 	CREATE
+
+	Creates a new table, a view of a table, or other object in the database.
+
+2)	ALTER
+
+	Modifies an existing database object, such as a table.
+
+3)	DROP
+
+	Deletes an entire table, a view of a table or other objects in the database.
+
+====================DML  Data Manipulation Language==========
+
+
+1	SELECT
+
+	Retrieves certain records from one or more tables.
+
+2	INSERT
+
+	Creates a record.
+
+3	UPDATE
+
+	Modifies records.
+
+4	DELETE
+
+Deletes records
+
+====================DCL  Data Control Language==========
+
+1	GRANT
+
+		Gives a privilege to user.
+
+2	REVOKE
+
+		Takes back privileges granted from user.
+
+===================================RDBMS Concepts==================
+
+=================What is RDBMS?================
+
+RDBMS stands for Relational Database Management System. RDBMS is the basis for SQL, and for all modern database systems like MS SQL Server, IBM DB2, Oracle, MySQL, and Microsoft Access.
+
+A Relational database management system (RDBMS) is a database management system (DBMS) that is based on the relational model as introduced by E. F. Codd.
+
+==================What is a table?==============
+
+The data in an RDBMS is stored in database objects which are called as tables. This table is basically a collection of related data entries and it consists of numerous columns and rows.
+
+=====================What is a field?==============
+
+Every table is broken up into smaller entities called fields. The fields in the CUSTOMERS table consist of ID, NAME, AGE, ADDRESS and SALARY.
+
+A field is a column in a table that is designed to maintain specific information about every record in the table
+
+==============What is a Record or a Row?===========
+
+A record is also called as a row of data is each individual entry that exists in a table. For example, there are 7 records in the above CUSTOMERS table. Following is a single row of data or record in the CUSTOMERS table
+
+===============What is a column?============
+
+A column is a vertical entity in a table that contains all information associated with a specific field in a table.
+
+For example, a column in the CUSTOMERS table is ADDRESS, which represents location description and would be as shown below 
+
++-----------+
+| ADDRESS   |
++-----------+
+| Ahmedabad |
+| Delhi     |
+| Kota      |
+| Mumbai    |
+| Bhopal    |
+| MP        |
+| Indore    |
++----+------+
+
+=============What is a NULL value?==============
+
+A NULL value in a table is a value in a field that appears to be blank, which means a field with a NULL value is a field with no value.
+
+It is very important to understand that a NULL value is different than a zero value or a field that contains spaces. A field with a NULL value is the one that has been left blank during a record creation
+
+========================SQL Constraints================
+
+Constraints are the rules enforced on data columns on a table. These are used to limit the type of data that can go into a table. This ensures the accuracy and reliability of the data in the database.
+
+Constraints can either be column level or table level. Column level constraints are applied only to one column whereas, table level constraints are applied to the entire table.
+
+
+1)  	NOT NULL Constraint - Ensures that a column cannot have a NULL value.
+
+2)	DEFAULT Constraint - Provides a default value for a column when none is specified.
+
+3)	UNIQUE Constraint - Ensures that all the values in a column are different.
+
+4)	PRIMARY Key - Uniquely identifies each row/record in a database table.
+
+5)	FOREIGN Key - Uniquely identifies a row/record in any another database table.
+
+6)	CHECK Constraint - The CHECK constraint ensures that all values in a column satisfy certain conditions.
+
+7)	INDEX - Used to create and retrieve data from the database very quickly.
+
+====================Data Integrity==============
+
+The following categories of data integrity exist with each RDBMS 
+
+Entity Integrity  There are no duplicate rows in a table.
+
+Domain Integrity  Enforces valid entries for a given column by restricting the type, the format, or the range of values.
+
+Referential integrity  Rows cannot be deleted, which are used by other records.
+
+User-Defined Integrity  Enforces some specific business rules that do not fall into entity, domain or referential integrity.
+
+===================Database Normalization===============
+
+Database normalization is the process of efficiently organizing data in a database. There are two reasons of this normalization process 
+
+Eliminating redundant data, for example, storing the same data in more than one table.
+
+Ensuring data dependencies make sense.
+
+Both these reasons are worthy goals as they reduce the amount of space a database consumes and ensures that data is logically stored. Normalization consists of a series of guidelines that help guide you in creating a good database structure.
+
+
+It is your choice to take it further and go to the fourth normal form, fifth normal form and so on, but in general, the third normal form is more than enough.
+
+1)	First Normal Form (1NF)
+2) 	Second Normal Form (2NF)
+3)	Third Normal Form (3NF)
+
+==============SQL  Syntax==========
+
+SQL is followed by a unique set of rules and guidelines called Syntax. This tutorial gives you a quick start with SQL by listing all the basic SQL Syntax.
+
+All the SQL statements start with any of the keywords like SELECT, INSERT, UPDATE, DELETE, ALTER, DROP, CREATE, USE, SHOW and all the statements end with a semicolon (;)
+
+==============Various Syntax in SQL=========
+
+
+
+1)	SQL SELECT Statement
+
+	SELECT column1, column2....columnN
+	FROM   table_name;
+
+2)	SQL DISTINCT Clause
+
+		SELECT DISTINCT column1, column2....columnN
+		FROM   table_name;
+
+3)	SQL WHERE Clause
+
+	SELECT column1, column2....columnN  FROM   table_name  WHERE  CONDITION;
+
+4)		SQL AND/OR Clause
+
+	SELECT column1, column2....columnN  FROM   table_name
+
+	WHERE  CONDITION-1 {AND|OR} CONDITION-2;
+
+5)	SQL IN Clause
+		SELECT column1, column2....columnN
+	FROM   table_name
+
+	WHERE  column_name IN (val-1, val-2,...val-N);
+
+6)		SQL BETWEEN Clause
+
+	SELECT column1, column2....columnN
+	FROM   table_name
+	WHERE  column_name BETWEEN val-1 AND val-2;
+
+7)	SQL LIKE Clause
+	SELECT column1, column2....columnN
+	FROM   table_name
+	WHERE  column_name LIKE { PATTERN };
+
+8)	SQL ORDER BY Clause
+
+	SELECT column1, column2....columnN
+	FROM   table_name
+	WHERE  CONDITION
+	ORDER BY column_name {ASC|DESC};
+
+9)	SQL GROUP BY Clause
+
+	SELECT SUM(column_name)
+	FROM   table_name
+	WHERE  CONDITION
+	GROUP BY column_name;
+
+10)	SQL COUNT Clause
+
+	SELECT COUNT(column_name)
+	FROM   table_name
+	WHERE  CONDITION;
+
+11)	SQL HAVING Clause
+
+	SELECT SUM(column_name)
+	FROM   table_name
+	WHERE  CONDITION
+
+12)	GROUP BY column_name
+
+	HAVING (arithematic function condition);
+
+13)	SQL CREATE TABLE Statement
+
+CREATE TABLE table_name(
+column1 datatype,
+column2 datatype,
+column3 datatype,
+.....
+columnN datatype,
+PRIMARY KEY( one or more columns )
+);
+14)	SQL DROP TABLE Statement
+
+	DROP TABLE table_name;
+
+15)	SQL CREATE INDEX Statement
+
+ 	CREATE UNIQUE INDEX index_name
+ON table_name ( column1, column2,...columnN);
+
+SQL DROP INDEX Statement
+ALTER TABLE table_name
+DROP INDEX index_name;
+
+SQL DESC Statement
+DESC table_name;
+
+SQL TRUNCATE TABLE Statement
+TRUNCATE TABLE table_name;
+
+SQL ALTER TABLE Statement
+ALTER TABLE table_name {ADD|DROP|MODIFY} column_name {data_ype};
+
+SQL ALTER TABLE Statement (Rename)
+ALTER TABLE table_name RENAME TO new_table_name;
+
+SQL INSERT INTO Statement
+INSERT INTO table_name( column1, column2....columnN)
+VALUES ( value1, value2....valueN);
+
+SQL UPDATE Statement
+
+UPDATE table_name
+
+SET column1 = value1, column2 = value2....columnN=valueN
+[ WHERE  CONDITION ];
+
+SQL DELETE Statement
+
+DELETE FROM table_name
+WHERE  {CONDITION};
+
+SQL CREATE DATABASE Statement
+
+CREATE DATABASE database_name;
+
+SQL DROP DATABASE Statement
+DROP DATABASE database_name;
+
+SQL USE Statement
+USE database_name;
+
+SQL COMMIT Statement
+COMMIT;
+
+SQL ROLLBACK Statement
+ROLLBACK;
+
+
